@@ -27,6 +27,7 @@ aiming_offset = 0.055
 SPEED = 100
 REPETITIONS = 1000
 data = {"x":[], "y":[], "z":[]}
+pack_offset = [0, 0, 0]
 
 def update_data(p: Position):
     data["x"].append(p.point.x)
@@ -80,10 +81,10 @@ def taking_positions(coordinates: list):
     return [position_take(v[0], v[1], 0) for v in coordinates]
 
 
-def packing_positions_aim(x, y, num): return list(map(lambda i: position_aim(x, y, i * nut_height), range(num)))
+def packing_positions_aim(x, y, num): return list(map(lambda i: position_aim(x, y, i * nut_height + pack_offset[i]), range(num)))
 
 
-def packing_positions_take(x, y, num): return list(map(lambda i: position_take(x, y, i * nut_height), range(num)))
+def packing_positions_take(x, y, num): return list(map(lambda i: position_take(x, y, i * nut_height + pack_offset[i]), range(num)))
 
 
 def smoothing_position(pos1: Position, pos2: Position):
